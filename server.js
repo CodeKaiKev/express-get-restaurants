@@ -10,8 +10,16 @@ app.get("/restaurants", async (request, response)  => {
     const res = await Restaurant.findAll();
     response.json(res);
 })
+app.get("/restaurants/:id", async (request, response)  => {
+    const restaurant = await Restaurant.findByPk(request.params.id);
+    response.json(restaurant);
+})
 
+// app.listen(port, () => {
+//     sequelize.sync();
+//     console.log("Your server is listening on port http://localhost:" + port + "/restaurants");
+// })
 app.listen(port, () => {
     sequelize.sync();
-    console.log("Your server is listening on port http://localhost:" + port + "/restaurants");
+    console.log("Your server is listening on port http://localhost:3000/restaurants/2");
 })
